@@ -1,0 +1,92 @@
+const { MessageEmbed, Message } = require("discord.js");
+const config = require("../../config.json")
+const fs = require('fs');
+
+module.exports = {
+  config: {
+    name: "show",
+    description: "Pokazywanie kosmetyków",
+  },
+  run: async (client, message, args) => {
+    const minecraftusers = require(`../../data/users.json`)
+    let user = message.author;
+    let avatar = user.displayAvatarURL({size:1024});
+    let nickname = minecraftusers[message.author.id].nickname;
+    let show = args[0];
+    if(!minecraftusers[message.author.id]) {
+	minecraftusers[message.author.id] = {
+		nickname: null
+	}
+    }
+
+            /// EMBEDY ///
+
+    const polish_usage = new MessageEmbed()
+        .setColor('#FF0000')
+        .setAuthor(`⛔ Poprawne użycie: ${config["Konfiguracja"].prefix}show <MODEL>`)
+        .setDescription(`Wytlumaczenie argumentu - 1:\n\n**Model:**\nwings - Pokazanie skrzydel\nitem - Pokazanie itemu\naureola - Pokazanie aureoli\n\nnp. **$show wings** pokazuje ci ukryte skrzydla`)
+    const polish_showed = new MessageEmbed()
+        .setColor(`#00ff00`)
+        .setAuthor('✅ Odkryto!')
+        .setDescription(`Model, który został odkryty: **${show}**\nNick w minecraft: **${nickname}**`)
+        .setThumbnail(`https://minotar.net/bust/${nickname}`)
+        .setFooter(`${config["Konfiguracja"].name}    •   Użyte przez: ${message.author.tag}`, client.user.displayAvatarURL());
+    const polish_notr = new MessageEmbed()
+        .setColor('#FF0000')
+        .setAuthor('Musisz się najpierw zarejestrować', `${avatar}`)
+        .setDescription(`Nie jestes zarejestrowany! Aby sie zarejestrowac wpisz \`${config["Konfiguracja"].prefix}register <NICK>\` na tym kanale, potem bedziesz mogl korzystać z komend!`)
+        .setFooter(`${config["Konfiguracja"].name}    •   Użyte przez: ${message.author.tag}`, client.user.displayAvatarURL());
+
+                /// EMBEDY ///
+
+    if (message.channel.id == config["Opcje"].MachineChannelID) {
+        if (!args[0]) {
+              message.reply({ embed: polish_usage })
+              .then(message => {
+                message.delete({ timeout: 6000 })
+              })
+            return;
+          }
+          if (fs.existsSync(`./users/${nickname}.capesystem`)) {
+            if ((args[0]) === "wings") {
+                if (fs.existsSync(`/var/www/html/items/wings/users/#${nickname}.png`)) {
+                fs.rename(`/var/www/html/items/wings/users/#${nickname}.png`, `/var/www/html/items/wings/users/${nickname}.png`, function(err) {
+                    if ( err ) console.log('ERROR: ' + err);
+                });
+                }  
+                    message.reply({ embed: polish_showed })
+                    .then(message => {
+                      message.delete({ timeout: 3000 })
+                    })
+            }
+            if ((args[0]) === "item") {
+                if (fs.existsSync(`/var/www/html/items/item/users/#${nickname}.png`)) {
+                fs.rename(`/var/www/html/items/item/users/#${nickname}.png`, `/var/www/html/items/item/users/${nickname}.png`, function(err) {
+                    if ( err ) console.log('ERROR: ' + err);
+                });
+                }  
+                    message.reply({ embed: polish_showed })
+                    .then(message => {
+                      message.delete({ timeout: 3000 })
+                    })
+            }
+            if ((args[0]) === "hat") {
+                if (fs.existsSync(`/var/www/html/items/hat/users/#${nickname}.png`)) {
+                fs.rename(`/var/www/html/items/hat/users/#${nickname}.png`, `/var/www/html/items/hat/users/${nickname}.png`, function(err) {
+                    if ( err ) console.log('ERROR: ' + err);
+                });   
+                }         
+                    message.reply({ embed: polish_showed })
+                    .then(message => {
+                      message.delete({ timeout: 3000 })
+                    })
+            }
+        } else {
+                message.reply({ embed: polish_notr })
+                .then(message => {
+                  message.delete({ timeout: 3000 })
+                })
+        }
+    }
+  }
+}

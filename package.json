@@ -1,0 +1,35 @@
+{
+  "name": "discord-giveaway-bot",
+  "version": "2.2.1",
+  "description": "Very simple giveaway bot made with discord.js and discord-giveaways",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fekt/discord-giveaway-bot"
+  },
+  "author": "https://github.com/fekt",
+  "license": "ISC",
+  "dependencies": {
+    "discord-buttons": "^4.0.0",
+    "discord-giveaways": "^4.5.1",
+    "discord.js": "^12.5.3",
+    "edit-json-file": "^1.6.2",
+    "forever": "^4.0.2",
+    "forever-monitor": "^3.0.3",
+    "fs": "^0.0.1-security",
+    "htp": "^0.13.0",
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
+    "moment": "^2.29.1",
+    "moment-duration-format": "^2.3.2",
+    "ms": "^2.1.2",
+    "node-fetch": "^3.1.0",
+    "nvm": "0.0.4",
+    "path": "^0.12.7",
+    "pull": "^2.1.1",
+    "replace": "^1.2.1"
+  }
+}

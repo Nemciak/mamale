@@ -1,0 +1,15 @@
+ {
+    "Konfiguracja": {
+        "token": "OTMzMTU4NDAyMDIzMTEyNzU1.YeddfA.8qhLv00klmOyJF9AG0hQqbBP24U",
+        "prefix": ".",
+        "name": "DiroCape"
+    },
+    "Opcje": {
+        "MachineChannelID": "933156247333662721",  
+        "BotID": "ID",
+        "SuggestionChannelID": "933156247333662728",
+        "CGARoleID": "933156246427680774",
+        "LogChannelID": "933157954725756988",
+        "TeamRoleID": "933156246427680774"
+    }
+}
